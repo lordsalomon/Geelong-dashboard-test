@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Power BI Auto-refresh Dashboard</title>
+  </head>
+  <body>
+    <iframe
+      width="1263"
+      height="600"
+      src="https://app.powerbi.com/view?r=eyJrIjoiYjMzMDFiNGQtZTZlYy00MTMyLTgyMWEtZWQ1NzBlMzk5ZTVlIiwidCI6IjY5YWNkMjU2LTA5NTQtNDg1Yy1iYmMyLThkMzI4ZmQ3ZjFlOCJ9"
+      frameborder="0"
+      allowfullscreen="true"
+    ></iframe>
+    <script>
+      // Set the interval for refreshing the iframe
+      setInterval(function () {
+        var iframe = document.querySelector("iframe");
+        iframe.src = iframe.src;
+      }, 300000); // Refresh every 300,000 milliseconds (5 minutes)
+    </script>
+  </body>
+</html>
