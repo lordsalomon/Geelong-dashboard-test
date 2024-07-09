@@ -23,15 +23,37 @@
   </head>
   <body>
     <iframe
+      id="powerbi-frame"
       src="https://app.powerbi.com/view?r=eyJrIjoiYjMzMDFiNGQtZTZlYy00MTMyLTgyMWEtZWQ1NzBlMzk5ZTVlIiwidCI6IjY5YWNkMjU2LTA5NTQtNDg1Yy1iYmMyLThkMzI4ZmQ3ZjFlOCJ9"
       allowfullscreen="true"
     ></iframe>
     <script>
+      // Function to save the filter state to local storage
+      function saveFilterState() {
+        var iframe = document.querySelector("iframe");
+        var currentSrc = iframe.src;
+        localStorage.setItem("powerbi-filter", currentSrc);
+      }
+
+      // Function to restore the filter state from local storage
+      function restoreFilterState() {
+        var iframe = document.querySelector("iframe");
+        var savedSrc = localStorage.getItem("powerbi-filter");
+        if (savedSrc) {
+          iframe.src = savedSrc;
+        }
+      }
+
       // Set the interval for refreshing the iframe
       setInterval(function () {
-        var iframe = document.querySelector("iframe");
-        iframe.src = iframe.src;
+        saveFilterState();
+        restoreFilterState();
       }, 300000); // Refresh every 300,000 milliseconds (5 minutes)
+
+      // Restore the filter state when the page loads
+      window.onload = function () {
+        restoreFilterState();
+      };
     </script>
   </body>
 </html>
